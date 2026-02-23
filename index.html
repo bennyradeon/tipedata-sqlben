@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar SQL - Tutorial Database Sekolah Lengkap</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <h1>Belajar SQL untuk Database Sekolah</h1>
+      <nav>
+        <ul>
+          <li><a href="#auto_increment">AUTO_INCREMENT</a></li>
+          <li><a href="#foreign_key">FOREIGN KEY</a></li>
+          <li><a href="#enum">ENUM</a></li>
+          <li><a href="#year">YEAR</a></li>
+          <li><a href="#insert_into">INSERT INTO</a></li>
+          <li><a href="#null_not_null">NULL & NOT NULL</a></li>
+          <li><a href="#create_database">CREATE DATABASE</a></li>
+          <li><a href="#create_table">CREATE TABLE</a></li>
+          <li><a href="#primary_key">PRIMARY KEY</a></li>
+          <li><a href="#check_constraint">CHECK CONSTRAINT</a></li>
+          <li><a href="#unique_constraint">UNIQUE CONSTRAINT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="content">
+    <div id="create_database" class="card">
+      <h2>1. CREATE DATABASE</h2>
+      <p><strong>Penjelasan:</strong> <code>CREATE DATABASE</code> digunakan untuk membuat sebuah database baru yang berfungsi untuk menampung dan mengelola tabel serta data.</p>
+      <pre><code>CREATE DATABASE db_sekolah;</code></pre>
+      <p><strong>Contoh:</strong> Database bernama <code>db_sekolah</code> akan dibuat untuk menyimpan semua data yang berkaitan dengan sekolah.</p>
+    </div>
+
+    <div id="create_table" class="card">
+      <h2>2. CREATE TABLE</h2>
+      <p><strong>Penjelasan:</strong> <code>CREATE TABLE</code> digunakan untuk mendefinisikan tabel baru dalam database, lengkap dengan kolom-kolom yang diperlukan.</p>
+      <pre><code>CREATE TABLE siswa (...);</code></pre>
+      <p><strong>Contoh:</strong> Tabel <code>siswa</code> akan berisi kolom untuk ID, NIS, Nama, dan informasi lainnya.</p>
+    </div>
+
+    <div id="auto_increment" class="card">
+      <h2>3. AUTO_INCREMENT</h2>
+      <p><strong>Penjelasan:</strong> <code>AUTO_INCREMENT</code> adalah atribut yang digunakan untuk kolom bertipe data numerik, seperti <code>INT</code>, untuk menghasilkan nilai unik secara otomatis setiap kali baris baru ditambahkan.</p>
+      <pre><code>id_siswa INT AUTO_INCREMENT PRIMARY KEY</code></pre>
+      <p><strong>Contoh:</strong> Anda tidak perlu memasukkan nilai untuk <code>id_siswa</code> secara manual, karena nilainya akan bertambah secara otomatis setiap kali data siswa baru dimasukkan.</p>
+      <p><strong>Manfaat:</strong> Menghindari kesalahan pengisian nilai ID yang duplikat dan mempermudah pengisian data tanpa harus mengatur ID secara manual.</p>
+    </div>
+
+    <div id="foreign_key" class="card">
+      <h2>4. FOREIGN KEY</h2>
+      <p><strong>Penjelasan:</strong> <code>FOREIGN KEY</code> digunakan untuk mendefinisikan relasi antar tabel, di mana sebuah kolom di satu tabel mengacu pada kolom di tabel lain untuk menjaga konsistensi data.</p>
+      <pre><code>FOREIGN KEY (id_siswa) REFERENCES siswa(id_siswa)</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>id_siswa</code> pada tabel <code>siswa_kelas</code> mengacu pada kolom <code>id_siswa</code> di tabel <code>siswa</code>. Setiap data yang dimasukkan ke dalam tabel <code>siswa_kelas</code> harus memiliki <code>id_siswa</code> yang valid dari tabel <code>siswa</code>.</p>
+      <p><strong>Manfaat:</strong> Memastikan data yang dimasukkan di tabel terkait (misalnya, tabel <code>siswa_kelas</code>) selalu terhubung dan valid dengan data di tabel lain.</p>
+    </div>
+
+    <div id="enum" class="card">
+      <h2>5. ENUM</h2>
+      <p><strong>Penjelasan:</strong> <code>ENUM</code> adalah tipe data yang membatasi nilai kolom untuk hanya menerima satu dari beberapa nilai yang telah ditentukan.</p>
+      <pre><code>jenis_kelamin ENUM('L','P')</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>jenis_kelamin</code> hanya dapat berisi nilai 'L' untuk Laki-laki atau 'P' untuk Perempuan. Dengan ini, kita bisa membatasi input agar hanya nilai yang valid yang dapat dimasukkan.</p>
+      <p><strong>Manfaat:</strong> Menjaga konsistensi data dengan membatasi input hanya pada nilai yang telah ditentukan, dan menghindari kesalahan penulisan.</p>
+    </div>
+
+    <div id="year" class="card">
+      <h2>6. YEAR</h2>
+      <p><strong>Penjelasan:</strong> <code>YEAR</code> digunakan untuk menyimpan data yang hanya berupa tahun dalam format 4 digit.</p>
+      <pre><code>tahun_masuk YEAR</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>tahun_masuk</code> menyimpan tahun masuk siswa (misalnya 2023), yang hanya menerima angka 4 digit.</p>
+      <p><strong>Manfaat:</strong> Memudahkan pengelolaan data tahun, karena hanya menerima input tahun yang valid dalam format 4 digit.</p>
+    </div>
+
+    <div id="insert_into" class="card">
+      <h2>7. INSERT INTO</h2>
+      <p><strong>Penjelasan:</strong> <code>INSERT INTO</code> digunakan untuk menambahkan data baru ke dalam tabel dengan menyebutkan nama kolom dan nilai yang ingin dimasukkan.</p>
+      <pre><code>INSERT INTO siswa (nis, nama, jenis_kelamin, tanggal_lahir, alamat, tahun_masuk) VALUES ('S001', 'Ahmad Rizky', 'L', '2008-01-12', 'Jakarta', 2023);</code></pre>
+      <p><strong>Contoh:</strong> Perintah ini digunakan untuk memasukkan data siswa baru ke dalam tabel <code>siswa</code>. Nilai-nilai yang dimasukkan akan sesuai dengan urutan kolom yang telah didefinisikan.</p>
+      <p><strong>Manfaat:</strong> Mempermudah penambahan data ke dalam tabel yang sudah ada, memastikan bahwa data yang dimasukkan sesuai dengan struktur tabel yang telah ditentukan.</p>
+    </div>
+
+    <div id="null_not_null" class="card">
+      <h2>8. NULL & NOT NULL</h2>
+      <p><strong>Penjelasan:</strong> <code>NULL</code> berarti tidak ada nilai yang dimasukkan ke dalam kolom, sedangkan <code>NOT NULL</code> memastikan bahwa kolom tersebut wajib diisi.</p>
+      <pre><code>jenis_kelamin ENUM('L','P') NOT NULL</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>jenis_kelamin</code> harus diisi, sehingga menggunakan <code>NOT NULL</code> untuk memastikan tidak ada data kosong.</p>
+      <p><strong>Manfaat:</strong> Memastikan bahwa kolom yang diberikan <code>NOT NULL</code> selalu memiliki data, dan menghindari penyimpanan data yang tidak lengkap.</p>
+    </div>
+
+    <div id="check_constraint" class="card">
+      <h2>9. CHECK CONSTRAINT</h2>
+      <p><strong>Penjelasan:</strong> <code>CHECK</code> digunakan untuk membatasi nilai yang dapat dimasukkan ke dalam kolom berdasarkan kondisi tertentu.</p>
+      <pre><code>umur_pemohon INT CHECK (umur_pemohon >= 17)</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>umur_pemohon</code> hanya akan menerima nilai lebih besar atau sama dengan 17.</p>
+      <p><strong>Manfaat:</strong> Menjaga integritas data dengan memastikan nilai yang dimasukkan memenuhi kriteria yang telah ditentukan.</p>
+    </div>
+
+    <div id="unique_constraint" class="card">
+      <h2>10. UNIQUE CONSTRAINT</h2>
+      <p><strong>Penjelasan:</strong> <code>UNIQUE</code> memastikan bahwa setiap nilai dalam kolom bersifat unik, tidak ada duplikasi.</p>
+      <pre><code>nis VARCHAR(20) UNIQUE</code></pre>
+      <p><strong>Contoh:</strong> Kolom <code>nis</code> tidak dapat memiliki dua nilai yang sama di seluruh tabel.</p>
+      <p><strong>Manfaat:</strong> Menghindari duplikasi data pada kolom yang harus unik, seperti nomor induk siswa (NIS) atau email.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Database School Example | Dibuat dengan ❤</p>
+  </footer>
+</body>
+</html>
